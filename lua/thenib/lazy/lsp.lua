@@ -11,7 +11,24 @@ return {
         })
 
         local lspconfig = require("lspconfig")
-        lspconfig.tsserver.setup({})
-        lspconfig.lua_ls.setup({})
+        lspconfig.ts_ls.setup({})
+        lspconfig.lua_ls.setup({
+            root_dir = function(fname)
+                if fname:match("/Documents/prj/") then
+                    return require("lspconfig").util.root_pattern(".git", "lua/")(fname)
+                end
+                return require("lspconfig").util.root_pattern(".luarc.json", ".git")(fname)
+            end,
+            settings = {
+                Lua = {
+                    workspace = {
+                        checkThirdParty = false,
+                    },
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                },
+            },
+        })
     end,
 }
