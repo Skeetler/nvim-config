@@ -1,18 +1,22 @@
 return {
-  "coffebar/neovim-project",
-  opts = {
-    projects = {
-      "~/Documents/prj/*",
+    "coffebar/neovim-project",
+    opts = {
+        projects = {
+            "~/Documents/prj/*",
+            "~/.config/nvim/*",
+        },
+        picker = {
+            type = "telescope",
+        },
+        on_project_selected = function()
+            vim.cmd("Ex")
+        end,
     },
-    picker = {
-      type = "telescope",
+    dependencies = {
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-telescope/telescope.nvim" },
+        { "Shatur/neovim-session-manager" },
     },
-  },
-  dependencies = {
-    { "nvim-lua/plenary.nvim" },
-    { "nvim-telescope/telescope.nvim" },
-    { "Shatur/neovim-session-manager" },
-  },
-  lazy = false,
-  priority = 100,
+    lazy = false,
+    priority = 100,
 }
