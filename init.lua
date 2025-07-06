@@ -13,6 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = ""
 
 require("thenib.remap")
