@@ -23,6 +23,18 @@ return {
             end,
         }
 
+        vim.lsp.config["eslint"] = {
+            cmd = { "vscode-eslint-language-server", "--stdio" },
+            filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+            root_dir = function(fname)
+                if type(fname) ~= "string" or fname == "" then
+                    return nil
+                end
+                local found = vim.fs.find({ "package.json", "tsconfig.json", ".git" }, { upward = true, path = fname })
+                return found and found[1] or nil
+            end,
+        }
+
         -- Lua LSP
         vim.lsp.config["lua_ls"] = {
             cmd = { "lua-language-server" },

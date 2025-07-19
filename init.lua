@@ -15,6 +15,13 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = ""
+vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro"
+
+vim.filetype.add({
+    extension = {
+        njk = "html",
+    },
+})
 
 require("thenib.remap")
 require("lazy").setup("thenib.lazy")
